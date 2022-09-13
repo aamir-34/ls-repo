@@ -1,9 +1,14 @@
-name: Build and Deploy to GCR
+name: Build and Deploy to GKE
 
 on:
   push:
     branches:
       - main
+
+env:
+  PROJECT_ID: ${{secrets.GKE_PROJECT}
+  IMAGE: github-actions-gke-image8
+  TAG: 1.0.0
 
 jobs:
   setup-build-publish-deploy:
