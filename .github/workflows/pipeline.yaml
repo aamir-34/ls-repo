@@ -6,7 +6,7 @@ on:
       - main
 
   IMAGE: github-actions-gke-image8
-  TAG: 1.0.1
+  TAG: 1.0.0
 
 jobs:
   setup-build-publish-deploy:
