@@ -5,6 +5,13 @@ on:
     branches:
       - main
 
+env:
+  PROJECT_ID: ${{secrets.GKE_PROJECT}}
+  GKE_CLUSTER: work-cluster
+  GKE_ZONE: us-central1-c
+  DEPLOYMENT_NAME: github-actions-gke
+  IMAGE: github-actions-gke-image8
+  TAG: 1.0.0
 
 jobs:
   setup-build-publish-deploy:
@@ -12,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 
@@ -26,6 +34,9 @@ jobs:
       - name: Configure Docker
         run: |-
           gcloud --quiet auth configure-docker
+      - name: Get GKE Credentials
+        run: |-
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
       - name: Build Docker Image
         run: |-
           docker build --tag "gcr.io/$PROJECT_ID/$IMAGE:$TAG" .
