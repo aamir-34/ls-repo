@@ -9,7 +9,7 @@ on:
 jobs:
   setup-build-publish-deploy:
     name: Setup Build Publish Deploy
-    runs-on: ubuntu-latest1
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
